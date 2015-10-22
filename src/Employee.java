@@ -1,13 +1,6 @@
 
 public class Employee {
-
-	
 	// Employee Details
-	private String EmployeeName; 
-	
-	
-	
-	// Address Details
-	
-	// Employee Security Details 
+	protected String EmployeeName; 
+	protected int EmployeeNumber;
 }
