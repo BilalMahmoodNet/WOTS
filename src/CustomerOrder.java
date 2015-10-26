@@ -1,42 +1,33 @@
 
-public class CustomerOrder {
+public class customerorder {
+	private int customerOrderID;
+	private String customerName;
+	private  String employeeWorking;
+	private String checkedOut;
 	
 	
-	protected int orderID;
-	protected int productID;
-	protected String progress;
-	protected int price;
-	protected int qty;
-	
-
-	public int getOrderID() {
-		return orderID;
+	public int getCustomerOrderID() {
+		return customerOrderID;
 	}
-	public void setOrderID(int orderID) {
-		this.orderID = orderID;
+	public void setCustomerOrderID(int customerID) {
+		this.customerOrderID = customerID;
 	}
-	public int getProductID() {
-		return productID;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
-	public String getProgress() {
-		return progress;
+	public String getEmployeeWorking() {
+		return employeeWorking;
 	}
-	public void setProgress(String progress) {
-		this.progress = progress;
+	public void setEmployeeWorking(String employeeWorking) {
+		this.employeeWorking = employeeWorking;
 	}
-	public int getPrice() {
-		return price;
+	public String getCheckedOut() {
+		return checkedOut;
 	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getQty() {
-		return qty;
-	}
-	public void setQty(int qty) {
-		this.qty = qty;
+	public void setCheckedOut(String checkedOut) {
+		this.checkedOut = checkedOut;
 	}
 }

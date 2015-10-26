@@ -1,14 +1,15 @@
 
-public class customerorderline {
-	private int customerOrderID;
+public class purchaseorderline {
+
+	private int purchaseOrderID;;
 	private String productName;
 	private int quantity;
 	
-	public int getCustomerOrderID() {
-		return customerOrderID;
+	public int getPurchaseOrderID() {
+		return purchaseOrderID;
 	}
-	public void setCustomerOrderID(int customerOrderID) {
-		this.customerOrderID = customerOrderID;
+	public void setPurchaseOrderID(int purchaseOrderID) {
+		this.purchaseOrderID = purchaseOrderID;
 	}
 	public String getProductName() {
 		return productName;
@@ -22,8 +23,4 @@ public class customerorderline {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
-	
-
 }

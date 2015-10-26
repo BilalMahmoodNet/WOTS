@@ -1,6 +1,3 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
@@ -15,72 +12,129 @@ public class LoginScreen {
 						System.out.println("*****************************");
 						System.out.println("         MAIN MENU");
 						System.out.println("Press 1 to create a new customer order");
-						System.out.println("Press 2 to view customer orders");
-						System.out.println("Press 3 to view stocklist");
-						System.out.println("Press 4 to create a new supplier order");
-						System.out.println("Press 5 to view order line");
+						System.out.println("Press 2 to create a new purchase order");
+						System.out.println("Press 3 to view orders");
+						System.out.println("Press 4 to view products");
+						System.out.println("Press 5 to edit the status of a order");
 						System.out.println("Press 6 to quit");
 							int choice = input.nextInt();
 							switch (choice) {
 												case 1: System.out.println("You selected to create a new customer order");
-																newOrder();
+																newCustomerOrder();
 														break;
-												case 2: System.out.println("You selected to view customer orders");
+												case 2: System.out.println("You selected to create a new supplier order");
+																newPurchaseOrder();
+														break;
+												case 3: System.out.println("You selected to view orders");
 																readOrder();
 														break;
-												case 3: System.out.println("You selected to view the stocklist");
+												case 4: System.out.println("You selected to view the products");
 																readStock();
 														break;
-												case 4: System.out.println("You selected to create a new supplier order");
-																newSupplierOrder();
+												case 5: System.out.println("You selected status update");
+												System.out.println("Not Ready YET!!");
 														break;
-												case 5: System.out.println("You select to view the customer orders line");
-																customerorderline.CustomerOrderLine();
 												case 6: System.out.println("Bye!!");
 																System.exit(0);
 														break;
 											}
 						}
 			
-	private void newOrder()
+	private void newCustomerOrder()
 	{
-		System.out.println("Enter ProductID:");
-		int productID = input.nextInt();
+		System.out.println("Enter Customer OrderID:");
+		int customerOrderID = input.nextInt();
 		
-		System.out.println("Enter progress:");
-		String progress = input.next();
+		System.out.println("Enter Customer Name:");
+		String customerName = input.next();
 		
-		System.out.println("Enter price:");
-		int price = input.nextInt();
+		System.out.println("Enter Employee Name:");
+		String employeeWorking = input.next();
 		
-		System.out.println("Enter qty:");
-		int qty = input.nextInt();
+		System.out.println("Enter Checked Out:");
+		String checkedOut = input.next();
 		
-		String sql = "INSERT INTO customerorder (productID, progress, price, qty) VALUES ("+productID+", '"+progress+"', "+price+", "+qty+")"; //string concatination
+		String sql = "INSERT INTO customerorder (customerOrderID, customerName, employeeWorking, checkedOut) VALUES ("+customerOrderID+", '"+customerName+"', '"+employeeWorking+"', '"+checkedOut+"')"; //string concatination
 		DB.CreateOrder(sql);
-		
+		newCustomerOrderLine();
 		
 	}
 	
-	private void newSupplierOrder()
+	private void newCustomerOrderLine()
 	{
-		System.out.println("Enter Supplier ID:");
-		int supplierID = input.nextInt();
+		System.out.println("Enter Customer OrderID:");
+		int customerOrderID = input.nextInt();
 		
-		System.out.println("Enter Supplier Name:");
-		String supplierName = input.next();
-		
-		System.out.println("Enter Product ID:");
-		int productID = input.nextInt();
+		System.out.println("Enter Product Name:");
+		String productName = input.next();
 		
 		System.out.println("Enter Quantity:");
 		int quantity = input.nextInt();
 		
-		System.out.println("Enter OrderID:");
-		int orderID = input.nextInt();
+		String sql = "INSERT INTO customerorderline (customerOrderID, productName, quantity) VALUES ("+customerOrderID+", '"+productName+"', "+quantity+")"; //string concatination
+		DB.CreateOrder(sql);
 		
-		String sql = "INSERT INTO supplierorder (supplierID, supplierName, productID, quantity, orderID) VALUES ("+supplierID+", '"+supplierName+"', "+productID+", "+quantity+", "+orderID+")"; //string concatination
-		DB.CreateSupplierOrder(sql);
+		System.out.println("Press 1 to add to the order");
+		System.out.println("Press 2 to go to the main menu");
+		
+		int x = input.nextInt();
+		switch (x) {
+		case 1: System.out.println("You chose to add to the order");
+											newCustomerOrderLine();
+											break;
+		case 2: System.out.println("You chose main menu");
+											menu();
+											break;
+		}
+				
+		
+	}
+	
+	private void newPurchaseOrder()
+	{
+		System.out.println("Enter Purchase ID:");
+		int purchaseOrderID = input.nextInt();
+		
+		System.out.println("Enter Purchase Name:");
+		String purchaseName = input.next();
+		
+		System.out.println("Enter Employee Name:");
+		String employeeWorking = input.next();
+		
+		System.out.println("Is the Order Checked Out?:");
+		String checkedOut = input.next();
+		
+		String sql = "INSERT INTO purchaseOrder (purchaseOrderID, purchaseName, employeeWorking, checkedOut) VALUES ("+purchaseOrderID+", '"+purchaseName+"', '"+employeeWorking+"', '"+checkedOut+"')"; //string concatination
+		DB.CreatePurchaseOrder(sql);
+		newPurchaseOrderLine();
+	}
+	
+	private void newPurchaseOrderLine()
+	{
+		System.out.println("Enter Purchase ID:");
+		int purchaseID = input.nextInt();
+		
+		System.out.println("Enter Product Name:");
+		String productName = input.next();
+		
+		System.out.println("Enter Quantity:");
+		String quantity = input.next();
+				
+		String sql = "INSERT INTO purchaseOrderLine (purchaseOrderID, productName, quantity) VALUES ("+purchaseID+", '"+productName+"', "+quantity+")"; //string concatination
+		DB.CreatePurchaseOrder(sql);
+		
+		System.out.println("Press 1 to add to the order");
+		System.out.println("Press 2 to go to the main menu");
+		
+		int x = input.nextInt();
+		switch (x) {
+		case 1: System.out.println("You chose to add to the order");
+											newPurchaseOrderLine();
+											break;
+		case 2: System.out.println("You chose main menu");
+											menu();
+											break;
+		}
 	}
 	
 	private void readOrder()
@@ -94,57 +148,51 @@ public class LoginScreen {
 		int choice = input.nextInt();
 		
 			switch (choice) {
-							case 1: System.out.println("View Supplier Orders");
-										ArrayList<SupplierOrder> listOfOrders =	DB.readAllSupplierOrders();
+							case 1: System.out.println("View Purchase Orders");
+										ArrayList<purchaseorder> listOfOrders =	DB.readAllPurchaseOrders();
 										for(int i = 0; i < listOfOrders.size(); i++) {
 											System.out.println(
-													"Supplier ID : " + listOfOrders.get(i).getSupplierID() +
-													",Supplier Name : " + listOfOrders.get(i).getSupplierName() +
-													",Product ID : " + listOfOrders.get(i).getProductID() +
-													",Quantity : " + listOfOrders.get(i).getQuantity() +
-													",Order ID : " + listOfOrders.get(i).getOrderID()
+													"Purchase ID : " + listOfOrders.get(i).getPurchaseOrderID() +
+													",Purchase Name : " + listOfOrders.get(i).getPurchaseName()
 													);
-											readOrder();
 											}
+										selectPurchaseOrderLine();
 										break;
 							case 2: System.out.println("View Customer Orders");
-										ArrayList<CustomerOrder> listOfOrders1 = DB.readAllCustomerOrders();
+										ArrayList<customerorder> listOfOrders1 = DB.readAllCustomerOrders();
 										for (int i= 0; i<listOfOrders1.size(); i++){
 											System.out.println(
-													"Product ID : " + listOfOrders1.get(i).getProductID() +
-													", Order ID : " + listOfOrders1.get(i).getOrderID() +
-													", Progress : " + listOfOrders1.get(i).getProgress() +
-													", Price : " + listOfOrders1.get(i).getPrice() +
-													", Qty : " + listOfOrders1.get(i).getQty()									
+													"Customer ID : " + listOfOrders1.get(i).getCustomerOrderID() +
+													", Customer Name : " + listOfOrders1.get(i).getCustomerName() +
+													", Employee Working is : " + listOfOrders1.get(i).getEmployeeWorking() +
+													", Checked Out : " + listOfOrders1.get(i).getCheckedOut()									
 													);
-											readOrder();
-										}
+											}
+										selectCustomerOrderLine();
 										break;
 							case 3: System.out.println("View Picked Orders");							
-										ArrayList<CustomerOrder> listOfOrders2 = DB.readPickedOrder();
+										ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
 										for (int i= 0; i<listOfOrders2.size(); i++){
 											System.out.println(
-													"Product ID : " + listOfOrders2.get(i).getProductID() +
-													", Order ID : " + listOfOrders2.get(i).getOrderID() +
-													", Progress : " + listOfOrders2.get(i).getProgress() +
-													", Price : " + listOfOrders2.get(i).getPrice() +
-													", Qty : " + listOfOrders2.get(i).getQty()									
+													"Customer ID : " + listOfOrders2.get(i).getCustomerOrderID() +
+													", Order ID : " + listOfOrders2.get(i).getCustomerName() +
+													", Employee Working is : " + listOfOrders2.get(i).getEmployeeWorking() +
+													", Checked Out : " + listOfOrders2.get(i).getCheckedOut()									
 													);
-											readOrder();
-										}
+											}
+										readOrder();
 									break;	
 							case 4: System.out.println("View Packed Orders");
-										ArrayList<CustomerOrder> listOfOrders3 = DB.readPickedOrder();
+										ArrayList<customerorder> listOfOrders3 = DB.readPickedOrder();
 										for (int i= 0; i<listOfOrders3.size(); i++){
 											System.out.println(
-												"Product ID : " + listOfOrders3.get(i).getProductID() +
-													", Order ID : " + listOfOrders3.get(i).getOrderID() +
-													", Progress : " + listOfOrders3.get(i).getProgress() +
-													", Price : " + listOfOrders3.get(i).getPrice() +
-													", Qty : " + listOfOrders3.get(i).getQty()									
+													"Customer ID : " + listOfOrders3.get(i).getCustomerOrderID() +
+													", Order ID : " + listOfOrders3.get(i).getCustomerName() +
+													", Employee Working is : " + listOfOrders3.get(i).getEmployeeWorking() +
+													", Checked Out : " + listOfOrders3.get(i).getCheckedOut()									
 													);
-											readOrder();
 										}
+										readOrder();
 										break;
 							case 5: System.out.println("Return");
 										menu();
@@ -152,15 +200,46 @@ public class LoginScreen {
 			}		
 	}
 	
+	private void selectPurchaseOrderLine()
+	{	
+		System.out.println("Enter the number of the order you would like to view");
+		int x = input.nextInt();
+		ArrayList<purchaseorderline> listOfOrders = DB.readPurchaseOrderByID(x);
+		for(int i = 0; i<listOfOrders.size(); i++){
+			System.out.println("Purchase ID: " + listOfOrders.get(i).getPurchaseOrderID() +
+					",Product Name:" + listOfOrders.get(i).getProductName() +
+					",Quantity: " + listOfOrders.get(i).getQuantity() 
+					);
+		}		
+		menu();
+		}
+	
+	private void selectCustomerOrderLine()
+	{
+		System.out.println("Enter the number of the order you would like to view");
+		int x = input.nextInt();
+		ArrayList<customerorderline> listOfOrders = DB.readCustomerOrderByID(x);
+		for(int i = 0; i<listOfOrders.size(); i++){
+			System.out.println("Purchase ID: " + listOfOrders.get(i).getCustomerOrderID() +
+					",Product Name:" + listOfOrders.get(i).getProductName() +
+					",Quantity: " + listOfOrders.get(i).getQuantity() 
+					);
+		}	
+		menu();
+	}
+	
+	
+	
+	
 	private void readStock() // method gets stock sheet from database
 		{
-			ArrayList<Product> listOfOrders4 = DB.readStock();
+			ArrayList<product> listOfOrders4 = DB.readStock();
 				for (int i= 0; i<listOfOrders4.size(); i++){
 				System.out.println("Product ID : " + listOfOrders4.get(i).getProductID()
-								+ ", Quantity : " + listOfOrders4.get(i).getQuantity() +
-									", Name : " + listOfOrders4.get(i).getName() +
-									", Location : " + listOfOrders4.get(i).getLocation() +
-									",Price : " + listOfOrders4.get(i).getPrice()
+								+ ", Product Name : " + listOfOrders4.get(i).getProductName() +
+									", Product Description : " + listOfOrders4.get(i).getProductDescription() +
+									", Quantity : " + listOfOrders4.get(i).getQuantity() +
+									",Location : " + listOfOrders4.get(i).getLocation()
 									);
 		}
 	}
