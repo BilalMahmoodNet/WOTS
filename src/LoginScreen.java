@@ -60,6 +60,24 @@ public class LoginScreen {
 		
 	}
 	
+	private void updateOrderStatus()//update
+	{
+		System.out.println("Enter the number of the order you would like to edit");
+		int x = input.nextInt();
+		System.out.println("Enter the employees name working on the order");
+		String y = input.next();
+		System.out.println("Is the order being checked out");
+		String z = input.next();
+		DB.UpdateWorking(x,y,z);
+	}
+	
+	private void DeleteProduct()//update
+	{
+		System.out.println("Enter the number of the order you would like to delete");
+		int x = input.nextInt();
+		DB.DeleteProduct(x);
+	}
+	
 	private void newCustomerOrderLine()
 	{
 		System.out.println("Enter Customer OrderID:");
@@ -143,7 +161,8 @@ public class LoginScreen {
 		System.out.println("Press 2 to view Customer orders");
 		System.out.println("Press 3 to view Picked orders");
 		System.out.println("Press 4 to view Packed orders");
-		System.out.println("Press 5 to return");
+		System.out.println("Press 5 to view PorousWear Orders");
+		System.out.println("Press 6 to return");
 		
 		int choice = input.nextInt();
 		
@@ -168,7 +187,17 @@ public class LoginScreen {
 													", Checked Out : " + listOfOrders1.get(i).getCheckedOut()									
 													);
 											}
-										selectCustomerOrderLine();
+										System.out.println("If you would like to change order status press 1");
+										System.out.println("If you would like to view purchase order line press 2");
+										int chance = input.nextInt();
+										
+											switch (chance) {
+											case 1: System.out.println("Change order status");
+											updateOrderStatus();
+											break;
+											case 2: System.out.println("View Order ");
+											newCustomerOrderLine();
+											}
 										break;
 							case 3: System.out.println("View Picked Orders");							
 										ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
@@ -194,7 +223,17 @@ public class LoginScreen {
 										}
 										readOrder();
 										break;
-							case 5: System.out.println("Return");
+							case 5: System.out.println("View Porous Orders");
+							ArrayList<customerorderline> listOfOrders10 = DB.readPorous();
+							for (int i= 0; i<listOfOrders10.size(); i++){
+								System.out.println("Purchase ID: " + listOfOrders10.get(i).getCustomerOrderID() +
+										",Product Name:" + listOfOrders10.get(i).getProductName() +
+										",Quantity: " + listOfOrders10.get(i).getQuantity() 									
+										);
+							}
+							readOrder();
+							break;			
+							case 6: System.out.println("Return");
 										menu();
 								
 			}		
@@ -228,9 +267,6 @@ public class LoginScreen {
 		menu();
 	}
 	
-	
-	
-	
 	private void readStock() // method gets stock sheet from database
 		{
 			ArrayList<product> listOfOrders4 = DB.readStock();
@@ -241,7 +277,9 @@ public class LoginScreen {
 									", Quantity : " + listOfOrders4.get(i).getQuantity() +
 									",Location : " + listOfOrders4.get(i).getLocation()
 									);
+				
 		}
+				DeleteProduct();
 	}
 
 	

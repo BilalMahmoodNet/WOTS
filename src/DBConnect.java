@@ -203,10 +203,6 @@ public class DBConnect { //class contains the database code
 		
 	}
 	
-	
-	
-	
-	
 	public ArrayList<customerorder> readAllCustomerOrders() //Select all coloumn's from Customer Order Tables and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders1 = new ArrayList<customerorder>();
@@ -281,7 +277,39 @@ customerorder co = new customerorder(); // creates an instance
 		} 
 	}
 	
-	
+	public ArrayList<customerorderline> readPorous() //Select all coloumn's from Customer Order Tables and stores in a arraylist
+	{
+		ArrayList<customerorderline> listOfOrders10 = new ArrayList<customerorderline>();
+		String readcustomer = "SELECT * FROM customerorderline WHERE productName LIKE '%Porous%'"; //select statement 
+		accessDB(); // opens connections
+		ResultSet rsporous ;
+		try
+		{
+			System.out.println("Creating Statement...");
+			stmt= conn.createStatement();
+			rsporous= stmt.executeQuery(readcustomer);
+			
+		while (rsporous.next()) {
+			
+			customerorderline col = new customerorderline(); // creates a instance of the supplier order class
+
+			int PID = rsporous.getInt("customerOrderID"); //getters
+			String PN = rsporous.getString("productName");
+			int QTY = rsporous.getInt("quantity");
+			
+			col.setCustomerOrderID(PID); //setters
+			col.setProductName(PN);
+			col.setQuantity(QTY);
+			
+			listOfOrders10.add(col); //stores array list in supplier order object
+		}
+		rsporous.close();
+		return listOfOrders10;
+		} catch (SQLException e){
+				e.printStackTrace();
+			return null;
+		} 
+	}
 	
 	
 	
@@ -373,6 +401,43 @@ customerorder co = new customerorder(); // creates an instance
 								return null;
 							} 
 					}
+	
+	public void UpdateWorking(int ID, String working, String checked)//UPDATE
+	{
+		String updateorder = "UPDATE customerorder " + "SET employeeWorking = '" + working + "', checkedout = '"+ checked + "' WHERE customerorderID = " + ID;
+		System.out.println(updateorder);
+		accessDB(); 
+		
+		try
+		{
+			System.out.println("Creating Statement...");
+			stmt= conn.createStatement();
+			stmt.executeUpdate(updateorder);
+		
+		} catch (SQLException e){
+				e.printStackTrace();
+			
+		} 
+	}
+	
+	public void DeleteProduct(int ID)//UPDATE
+	{
+		String deleteProduct = "DELETE FROM product " + " WHERE productID = " + ID;
+		System.out.println(deleteProduct);
+		accessDB(); 
+		
+		try
+		{
+			System.out.println("Creating Statement...");
+			stmt= conn.createStatement();
+			stmt.executeUpdate(deleteProduct);
+		
+		} catch (SQLException e){
+				e.printStackTrace();
+			
+		} 
+	}
+	
 	
 	
 	
