@@ -8,42 +8,45 @@ public class LoginScreen {
 	Statement stmt = null;
 		
 	public void menu() { 
-		
+		String choice;			
 						System.out.println("*****************************");
 						System.out.println("         MAIN MENU");
 						System.out.println("Press 1 to create a new customer order");
 						System.out.println("Press 2 to create a new purchase order");
 						System.out.println("Press 3 to view orders");
 						System.out.println("Press 4 to view products");
-						System.out.println("Press 5 to edit the status of a order");
-						System.out.println("Press 6 to quit");
-							int choice = input.nextInt();
+						System.out.println("Press 5 to quit");
+						choice = input.next();
+						
+
 							switch (choice) {
-												case 1: System.out.println("You selected to create a new customer order");
-																newCustomerOrder();
+												case "1": System.out.println("You selected to create a new customer order");
+																newCustomerOrder();//the method that creates a new customer order
 														break;
-												case 2: System.out.println("You selected to create a new supplier order");
-																newPurchaseOrder();
+												case "2": System.out.println("You selected to create a new supplier order");
+																newPurchaseOrder();//the method that creates a new purchase order
 														break;
-												case 3: System.out.println("You selected to view orders");
-																readOrder();
+												case "3": System.out.println("You selected to view orders");
+																readOrder();//the method used to view order
 														break;
-												case 4: System.out.println("You selected to view the products");
-																readStock();
+												case "4": System.out.println("You selected to view the products");
+																readStock();//the method used to 
 														break;
-												case 5: System.out.println("You selected status update");
-												System.out.println("Not Ready YET!!");
-														break;
-												case 6: System.out.println("Bye!!");
+												case "5": System.out.println("Bye!!");
 																System.exit(0);
-														break;
+														default:
+														System.out.println("Please enter a correct number");
+														menu();
+							
 											}
-						}
+						
+	}
 			
 	private void newCustomerOrder()
 	{
+	
 		System.out.println("Enter Customer OrderID:");
-		int customerOrderID = input.nextInt();
+		int customerOrderID = input.nextInt(); // stores integer into the customerOrderID variable
 		
 		System.out.println("Enter Customer Name:");
 		String customerName = input.next();
@@ -95,14 +98,16 @@ public class LoginScreen {
 		System.out.println("Press 1 to add to the order");
 		System.out.println("Press 2 to go to the main menu");
 		
-		int x = input.nextInt();
+		String x = input.next();
 		switch (x) {
-		case 1: System.out.println("You chose to add to the order");
+		case "1": System.out.println("You chose to add to the order");
 											newCustomerOrderLine();
 											break;
-		case 2: System.out.println("You chose main menu");
+		case "2": System.out.println("You chose main menu");
 											menu();
 											break;
+											default:
+												menu();
 		}
 				
 		
@@ -144,14 +149,16 @@ public class LoginScreen {
 		System.out.println("Press 1 to add to the order");
 		System.out.println("Press 2 to go to the main menu");
 		
-		int x = input.nextInt();
+		String x = input.next();
 		switch (x) {
-		case 1: System.out.println("You chose to add to the order");
+		case "1": System.out.println("You chose to add to the order");
 											newPurchaseOrderLine();
 											break;
-		case 2: System.out.println("You chose main menu");
+		case "2": System.out.println("You chose main menu");
 											menu();
 											break;
+											default:
+												menu();
 		}
 	}
 	
@@ -164,10 +171,10 @@ public class LoginScreen {
 		System.out.println("Press 5 to view PorousWear Orders");
 		System.out.println("Press 6 to return");
 		
-		int choice = input.nextInt();
+		String choice = input.next();
 		
 			switch (choice) {
-							case 1: System.out.println("View Purchase Orders");
+							case "1": System.out.println("View Purchase Orders");
 										ArrayList<purchaseorder> listOfOrders =	DB.readAllPurchaseOrders();
 										for(int i = 0; i < listOfOrders.size(); i++) {
 											System.out.println(
@@ -177,7 +184,7 @@ public class LoginScreen {
 											}
 										selectPurchaseOrderLine();
 										break;
-							case 2: System.out.println("View Customer Orders");
+							case "2": System.out.println("View Customer Orders");
 										ArrayList<customerorder> listOfOrders1 = DB.readAllCustomerOrders();
 										for (int i= 0; i<listOfOrders1.size(); i++){
 											System.out.println(
@@ -189,17 +196,22 @@ public class LoginScreen {
 											}
 										System.out.println("If you would like to change order status press 1");
 										System.out.println("If you would like to view purchase order line press 2");
-										int chance = input.nextInt();
+										String chance = input.next();
 										
 											switch (chance) {
-											case 1: System.out.println("Change order status");
+											case "1": System.out.println("Change order status");
 											updateOrderStatus();
 											break;
-											case 2: System.out.println("View Order ");
+											case "2": System.out.println("View Order ");
 											newCustomerOrderLine();
+											break;
+											case "3": System.out.println("View OrderLine");
+											selectCustomerOrderLine();
+											default:
+												menu();
 											}
 										break;
-							case 3: System.out.println("View Picked Orders");							
+							case "3": System.out.println("View Picked Orders");							
 										ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
 										for (int i= 0; i<listOfOrders2.size(); i++){
 											System.out.println(
@@ -211,7 +223,7 @@ public class LoginScreen {
 											}
 										readOrder();
 									break;	
-							case 4: System.out.println("View Packed Orders");
+							case "4": System.out.println("View Packed Orders");
 										ArrayList<customerorder> listOfOrders3 = DB.readPickedOrder();
 										for (int i= 0; i<listOfOrders3.size(); i++){
 											System.out.println(
@@ -223,7 +235,7 @@ public class LoginScreen {
 										}
 										readOrder();
 										break;
-							case 5: System.out.println("View Porous Orders");
+							case "5": System.out.println("View Porous Orders");
 							ArrayList<customerorderline> listOfOrders10 = DB.readPorous();
 							for (int i= 0; i<listOfOrders10.size(); i++){
 								System.out.println("Purchase ID: " + listOfOrders10.get(i).getCustomerOrderID() +
@@ -233,8 +245,10 @@ public class LoginScreen {
 							}
 							readOrder();
 							break;			
-							case 6: System.out.println("Return");
+							case "6": System.out.println("Return");
 										menu();
+									default:
+									readOrder();
 								
 			}		
 	}
