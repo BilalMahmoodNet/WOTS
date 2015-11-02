@@ -16,10 +16,14 @@ import javax.swing.JPanel;
 public class main extends JFrame {
 	
 	private JFrame mainFrame;
+	private JFrame customerFrame;
+	private JFrame purchaseFrame;
+	private JFrame orderFrame;
+	private JFrame productFrame;
+	
 	private JLabel headerLabel;
 	private JLabel statusLabel;
-	private JPanel controlPanel;
-	
+	private JPanel controlPanel;	
 	
 	public static void main(String[] args){
 		Scanner string = new Scanner(System.in);
@@ -27,8 +31,8 @@ public class main extends JFrame {
 		String username;
 		String password;
 		
-		main sD = new main();
-		sD.showEvent();
+		mainGUI GUI = new mainGUI();
+		
 		
 		System.out.println("Welcome Employee!");
 		System.out.println("Please enter ID:");
@@ -39,23 +43,20 @@ public class main extends JFrame {
 		
 		if (username.equals(username) && password.equals(password))
 			System.out.println("You are logged in");
-		
-			
-		
+				
 		l.menu();
 	}
 	
-	public main(){prepareGUI();}
+	/*public main(){prepareGUI();}
 	
 	private void prepareGUI() {
-		mainFrame = new JFrame("GUI EXAMPLE");
-		mainFrame.setSize(400, 400);
-		mainFrame.setLayout(new GridLayout(3, 1));
+		mainFrame = new JFrame("GUI EXAMPLE");mainFrame.setSize(300, 300);mainFrame.setLayout(new GridLayout(3, 1));
+		
 		headerLabel = new JLabel("", JLabel.CENTER);
 		statusLabel = new JLabel("", JLabel.CENTER);
 		statusLabel.setSize(350, 100);
 		
-	mainFrame.addWindowListener(new WindowAdapter() 
+		mainFrame.addWindowListener(new WindowAdapter() 
 	{
 		public void 
 		windowClosing(WindowEvent windowEvent)
@@ -65,33 +66,40 @@ public class main extends JFrame {
 	});
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
-		mainFrame.add(headerLabel);
 		mainFrame.add(controlPanel);
+		mainFrame.add(headerLabel);
 		mainFrame.add(statusLabel);
 		mainFrame.setVisible(true);
 	}
 	
-	private void showEvent() {
-		headerLabel.setText("Press Button");
-		JButton okButton = new JButton("OK");	
-			JButton("OK");
-		JButton submitButton = new JButton("Submit");
-			JButton("Submit");
-		JButton cancelButton = new JButton("Cancel");
-			JButton("Cancel");
-		okButton.setActionCommand("OK");
-		submitButton.setActionCommand("Submit");
-		cancelButton.setActionCommand("Cancel");
+	private void showEventMain() {
+		headerLabel.setText("Please choose an option");
+		JButton customerButton = new JButton("New Customer");	
+			JButton("New Customer");
+		JButton purchaseOrderButton = new JButton("New Purchase");
+			JButton("New Purchase");
+		JButton ordersButton = new JButton("View Orders");
+			JButton("View Orders");
+		JButton productsButton = new JButton("View Products");
+			JButton("View Products");
+			
+		customerButton.setActionCommand("New Customer");
+		purchaseOrderButton.setActionCommand("New Purchase");
+		ordersButton.setActionCommand("View Orders");
+		productsButton.setActionCommand("View Products");
 		
-		okButton.addActionListener(new BCL ());
-		submitButton.addActionListener(new BCL());
-		cancelButton.addActionListener(new BCL());
-		controlPanel.add(okButton);
-		controlPanel.add(submitButton);
-		controlPanel.add(cancelButton);
+		customerButton.addActionListener(new BCL ());
+		purchaseOrderButton.addActionListener(new BCL());
+		ordersButton.addActionListener(new BCL());
+		productsButton.addActionListener(new BCL());
+		
+		controlPanel.add(customerButton);
+		controlPanel.add(purchaseOrderButton);
+		controlPanel.add(ordersButton);
+		controlPanel.add(productsButton);
 		mainFrame.setVisible(true);
 	}
-
+	
 	private void JButton(String string) {
 		// TODO Auto-generated method stub
 		
@@ -101,14 +109,18 @@ public class main extends JFrame {
 	{
 		public void actionPerformed (ActionEvent ae) {
 			String command = ae.getActionCommand();
-			switch (command) {
-			case "OK": statusLabel.setText("OK!");
-			break;
-			case "Submit": statusLabel.setText("Submitted ! ");
-			break;
-			case "Cancel": statusLabel.setText("Cancel not possible");
-			break;
-	}}}
+				switch (command) {
+						case "New Customer": mainFrame.setVisible(false);customerFrame.setVisible(true);
+							
+						break;
+						case "New Purchase": mainFrame.setVisible(false);purchaseFrame.setVisible(true);
+						
+						break;
+						case "View Orders": mainFrame.setVisible(false);orderFrame.setVisible(true);
+						
+						break;
+						case "View Products": mainFrame.setVisible(false);productFrame.setVisible(true);
+						
+						break;
+	}}}*/
 }
-
-

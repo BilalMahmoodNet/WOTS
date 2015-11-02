@@ -310,27 +310,7 @@ customerorder co = new customerorder(); // creates an instance
 			return null;
 		} 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	public ArrayList<customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the progress as packed and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders3 = new ArrayList<customerorder>(); // creation of arraylist
@@ -366,7 +346,7 @@ customerorder co = new customerorder(); // creates an instance
 			} 
 	}
 	
-	public ArrayList<product> readStock() //selects all coloums in the product DB
+	public ArrayList<product> readStock() //selects all coloumns in the product DB
 	{
 		ArrayList<product> listOfOrders4 = new ArrayList<product>(); //creates a array list
 		String ReadProduct = "SELECT * FROM product";
@@ -437,37 +417,6 @@ customerorder co = new customerorder(); // creates an instance
 			
 		} 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

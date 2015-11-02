@@ -30,4 +30,6 @@ public class customerorder {
 	public void setCheckedOut(String checkedOut) {
 		this.checkedOut = checkedOut;
 	}
+	
+	
 }
