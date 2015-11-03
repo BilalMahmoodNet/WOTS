@@ -19,7 +19,7 @@ public class orderTypeBCL implements ActionListener {
 						}
 				break;
 				case "viewCustomer": 
-					ArrayList<customerorder> listOfOrders1 = DB.readAllCustomerOrders();
+					ArrayList<Customerorder> listOfOrders1 = DB.readAllCustomerOrders();
 					for (int i= 0; i<listOfOrders1.size(); i++){
 						System.out.println(
 								"Customer ID : " + listOfOrders1.get(i).getCustomerOrderID() +
@@ -30,7 +30,7 @@ public class orderTypeBCL implements ActionListener {
 						}
 				break;
 				case "viewPicked": 
-					ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
+					ArrayList<Customerorder> listOfOrders2 = DB.readPickedOrder();
 					for (int i= 0; i<listOfOrders2.size(); i++){
 						System.out.println(
 								"Customer ID : " + listOfOrders2.get(i).getCustomerOrderID() +
@@ -41,7 +41,7 @@ public class orderTypeBCL implements ActionListener {
 					}
 				break;
 				case "viewPacked": 
-					ArrayList<customerorder> listOfOrders3 = DB.readPickedOrder();
+					ArrayList<Customerorder> listOfOrders3 = DB.readPickedOrder();
 					for (int i= 0; i<listOfOrders3.size(); i++){
 						System.out.println(
 								"Customer ID : " + listOfOrders3.get(i).getCustomerOrderID() +

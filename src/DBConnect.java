@@ -203,9 +203,9 @@ public class DBConnect { //class contains the database code
 		
 	}
 	
-	public ArrayList<customerorder> readAllCustomerOrders() //Select all coloumn's from Customer Order Tables and stores in a arraylist
+	public ArrayList<Customerorder> readAllCustomerOrders() //Select all coloumn's from Customer Order Tables and stores in a arraylist
 	{
-		ArrayList<customerorder> listOfOrders1 = new ArrayList<customerorder>();
+		ArrayList<Customerorder> listOfOrders1 = new ArrayList<Customerorder>();
 		String readcustomer = "SELECT * FROM customerorder"; //select statement 
 		accessDB(); // opens connections
 		ResultSet rscustomer ;
@@ -216,7 +216,7 @@ public class DBConnect { //class contains the database code
 				rscustomer = stmt.executeQuery(readcustomer);
 				while (rscustomer.next()) {
 			
-										customerorder co = new customerorder(); // creates an instance
+										Customerorder co = new Customerorder(); // creates an instance
 			
 										int COID = rscustomer.getInt("customerOrderID"); //getter
 										String CN= rscustomer.getString("customerName");
@@ -238,9 +238,9 @@ public class DBConnect { //class contains the database code
 			} 
 	}
 		
-	public ArrayList<customerorder> readPickedOrder() //Select all coloumn's from Customer Order Tables with the progress as picked and stores in a arraylist
+	public ArrayList<Customerorder> readPickedOrder() //Select all coloumn's from Customer Order Tables with the progress as picked and stores in a arraylist
 	{
-		ArrayList<customerorder> listOfOrders2 = new ArrayList<customerorder>();
+		ArrayList<Customerorder> listOfOrders2 = new ArrayList<Customerorder>();
 		String ReadCustomerPicked = "SELECT * FROM customerorder WHERE checkedOut LIKE '%No%'"; //SQL statement
 		accessDB(); //opens connection
 		ResultSet rscustomerpicked ;
@@ -251,7 +251,7 @@ public class DBConnect { //class contains the database code
 				rscustomerpicked = stmt.executeQuery(ReadCustomerPicked);
 				while (rscustomerpicked.next()) {
 			
-													customerorder co = new customerorder(); // creates an instance
+													Customerorder co = new Customerorder(); // creates an instance
 			
 													int COID = rscustomerpicked.getInt("customerOrderID"); //getter
 													String CN= rscustomerpicked.getString("customerName");
@@ -307,9 +307,9 @@ public class DBConnect { //class contains the database code
 		} 
 	}
 		
-	public ArrayList<customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the checked out  as Yes and stores in a arraylist
+	public ArrayList<Customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the checked out  as Yes and stores in a arraylist
 	{
-		ArrayList<customerorder> listOfOrders3 = new ArrayList<customerorder>(); // creation of arraylist
+		ArrayList<Customerorder> listOfOrders3 = new ArrayList<Customerorder>(); // creation of arraylist
 		String ReadCustomerPacked = "SELECT * FROM customerorder WHERE checkedOut LIKE '%Yes%'"; //select statement 
 		accessDB(); //opens connection
 		ResultSet rscustomer ; 
@@ -320,7 +320,7 @@ public class DBConnect { //class contains the database code
 				rscustomer = stmt.executeQuery(ReadCustomerPacked);
 				while (rscustomer.next()) {
 			
-											customerorder co = new customerorder(); // creates an instance
+											Customerorder co = new Customerorder(); // creates an instance
 				
 											int COID = rscustomer.getInt("customerOrderID"); //getter
 											String CN= rscustomer.getString("customerName");
@@ -342,9 +342,9 @@ public class DBConnect { //class contains the database code
 			} 
 	}
 	
-	public ArrayList<product> readStock() //selects all coloumns in the product DB
+	public ArrayList<Product> readStock() //selects all coloumns in the product DB
 	{
-		ArrayList<product> listOfOrders4 = new ArrayList<product>(); //creates a array list
+		ArrayList<Product> listOfOrders4 = new ArrayList<Product>(); //creates a array list
 		String ReadProduct = "SELECT * FROM product";
 		accessDB();
 		ResultSet rsstock;
@@ -354,7 +354,7 @@ public class DBConnect { //class contains the database code
 				stmt= conn.createStatement();
 				rsstock = stmt.executeQuery(ReadProduct);
 						while (rsstock.next()) {
-											product product = new product(); // creates instance of the class
+											Product product = new Product(); // creates instance of the class
 											
 											int PRID = rsstock.getInt("productID"); //getter
 											String PN = rsstock.getString("productName");

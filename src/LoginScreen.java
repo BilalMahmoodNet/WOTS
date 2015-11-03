@@ -187,7 +187,7 @@ public class LoginScreen
 											selectPurchaseOrderLine();
 											break;
 								case "2": System.out.println("View Customer Orders");
-											ArrayList<customerorder> listOfOrders1 = DB.readAllCustomerOrders();
+											ArrayList<Customerorder> listOfOrders1 = DB.readAllCustomerOrders();
 											for (int i= 0; i<listOfOrders1.size(); i++){
 												System.out.println(
 														"Customer ID : " + listOfOrders1.get(i).getCustomerOrderID() +
@@ -212,7 +212,7 @@ public class LoginScreen
 												}
 											break;
 								case "3": System.out.println("View Orders that have been checked out");							
-											ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
+											ArrayList<Customerorder> listOfOrders2 = DB.readPickedOrder();
 											for (int i= 0; i<listOfOrders2.size(); i++){
 												System.out.println(
 														"Customer ID : " + listOfOrders2.get(i).getCustomerOrderID() +
@@ -224,7 +224,7 @@ public class LoginScreen
 											readOrder();
 										break;	
 								case "4": System.out.println("View Orders that havent been checked out");
-											ArrayList<customerorder> listOfOrders3 = DB.readPickedOrder();
+											ArrayList<Customerorder> listOfOrders3 = DB.readPickedOrder();
 											for (int i= 0; i<listOfOrders3.size(); i++){
 												System.out.println(
 														"Customer ID : " + listOfOrders3.get(i).getCustomerOrderID() +
@@ -283,7 +283,7 @@ public class LoginScreen
 		
 		private void readStock() // method gets stock sheet from database
 		{
-			ArrayList<product> listOfOrders4 = DB.readStock();
+			ArrayList<Product> listOfOrders4 = DB.readStock();
 				for (int i= 0; i<listOfOrders4.size(); i++){
 				System.out.println("Product ID : " + listOfOrders4.get(i).getProductID()
 								+ ", Product Name : " + listOfOrders4.get(i).getProductName() +

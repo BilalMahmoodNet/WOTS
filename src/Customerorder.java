@@ -1,4 +1,4 @@
-public class customerorder {
+public class Customerorder {
 	private int customerOrderID;
 	private String customerName;
 	private  String employeeWorking;

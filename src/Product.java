@@ -1,5 +1,5 @@
 
-public class product {
+public class Product {
 
 	private int productID;
 	private String productName;
