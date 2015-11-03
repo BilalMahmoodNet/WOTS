@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DBConnect { //class contains the database code
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";   // the driver
-	static final String DB_URL = "jdbc:mysql://localhost:3300/wots"; // My database URL
+	static final String DB_URL = "jdbc:mysql://10.50.15.36:3306/wots"; // My database URL
 	
 	static final String USER = "root";
 	static final String PASS = "netbuilder";//database password
@@ -67,15 +67,15 @@ public class DBConnect { //class contains the database code
 	{
 		accessDB();// open connection
 		try
-		{	
-		System.out.println("Inserting records into the table...");
-		stmt= conn.createStatement();
-		System.out.println(sql);
-		stmt.executeUpdate(sql);
-		System.out.println("Inserted Records into the table..");
-		} catch (SQLException e) {
+			{	
+				System.out.println("Inserting records into the table...");
+				stmt= conn.createStatement();
+				System.out.println(sql);
+				stmt.executeUpdate(sql);
+				System.out.println("Inserted Records into the table..");
+			} catch (SQLException e) {
 			e.printStackTrace();
-		}
+			}
 		closeDB();//close connection
 	}
 	
@@ -83,15 +83,15 @@ public class DBConnect { //class contains the database code
 	{
 		accessDB();
 		try
-		{	
-		System.out.println("Inserting records into the table...");
-		stmt= conn.createStatement();
-		System.out.println(sql);
-		stmt.executeUpdate(sql);
-		System.out.println("Inserted Records into the table..");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			{	
+				System.out.println("Inserting records into the table...");
+				stmt= conn.createStatement();
+				System.out.println(sql);
+				stmt.executeUpdate(sql);
+				System.out.println("Inserted Records into the table..");
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
 		closeDB();
 	}
 	
@@ -102,32 +102,32 @@ public class DBConnect { //class contains the database code
 		accessDB(); 
 		ResultSet rspurchase ;
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rspurchase = stmt.executeQuery(readpurchase);
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rspurchase = stmt.executeQuery(readpurchase);
+				
+				while (rspurchase.next()) {
 			
-		while (rspurchase.next()) {
-			
-			purchaseorder po = new purchaseorder(); // creates a instance of the supplier order class
-
-			int PID = rspurchase.getInt("purchaseOrderID"); //getters
-			String PN = rspurchase.getString("purchaseName");
-			String EW = rspurchase.getString("employeeWorking");
-			String CO = rspurchase.getString("checkedOut");
-			
-			
-			
-			po.setPurchaseOrderID(PID); //setters
-			po.setPurchaseName(PN);
-			po.setEmployeeWorking(EW);
-			po.setCheckedOut(CO);
-			
-			
-			listOfOrders.add(po); //stores array list in supplier order object
-		}
-		rspurchase.close();
-		return listOfOrders;
+											purchaseorder po = new purchaseorder(); // creates a instance of the supplier order class
+								
+											int PID = rspurchase.getInt("purchaseOrderID"); //getters
+											String PN = rspurchase.getString("purchaseName");
+											String EW = rspurchase.getString("employeeWorking");
+											String CO = rspurchase.getString("checkedOut");
+											
+											
+											
+											po.setPurchaseOrderID(PID); //setters
+											po.setPurchaseName(PN);
+											po.setEmployeeWorking(EW);
+											po.setCheckedOut(CO);
+											
+											
+											listOfOrders.add(po); //stores array list in supplier order object
+											}
+			rspurchase.close();
+			return listOfOrders;
 		} catch (SQLException e){
 				e.printStackTrace();
 			return null;
@@ -141,31 +141,31 @@ public class DBConnect { //class contains the database code
 		accessDB(); 
 		ResultSet rspurchase ;
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rspurchase = stmt.executeQuery(readpurchase);
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rspurchase = stmt.executeQuery(readpurchase);
 			
-		while (rspurchase.next()) {
+				while (rspurchase.next()) {
 			
-			purchaseorderline pol = new purchaseorderline(); // creates a instance of the supplier order class
-
-			int PID = rspurchase.getInt("purchaseOrderID"); //getters
-			String PN = rspurchase.getString("productName");
-			int QTY = rspurchase.getInt("quantity");
-			
-			pol.setPurchaseOrderID(PID); //setters
-			pol.setProductName(PN);
-			pol.setQuantity(QTY);
-			
-			listOfOrders.add(pol); //stores array list in supplier order object
-		}
-		rspurchase.close();
-		return listOfOrders;
-		} catch (SQLException e){
+											purchaseorderline pol = new purchaseorderline(); // creates a instance of the supplier order class
+								
+											int PID = rspurchase.getInt("purchaseOrderID"); //getters
+											String PN = rspurchase.getString("productName");
+											int QTY = rspurchase.getInt("quantity");
+											
+											pol.setPurchaseOrderID(PID); //setters
+											pol.setProductName(PN);
+											pol.setQuantity(QTY);
+											
+											listOfOrders.add(pol); //stores array list in supplier order object
+										}
+				rspurchase.close();
+				return listOfOrders;
+			} catch (SQLException e){
 				e.printStackTrace();
 			return null;
-		} 
+			} 
 	}
 	
 	public ArrayList<customerorderline> readCustomerOrderByID(int CustomerOrderID)
@@ -175,31 +175,31 @@ public class DBConnect { //class contains the database code
 		accessDB(); 
 		ResultSet rspurchase ;
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rspurchase = stmt.executeQuery(readpurchase);
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rspurchase = stmt.executeQuery(readpurchase);
 			
-		while (rspurchase.next()) {
+				while (rspurchase.next()) {
 			
-			customerorderline col = new customerorderline(); // creates a instance of the supplier order class
-
-			int PID = rspurchase.getInt("customerOrderID"); //getters
-			String PN = rspurchase.getString("productName");
-			int QTY = rspurchase.getInt("quantity");
-			
-			col.setCustomerOrderID(PID); //setters
-			col.setProductName(PN);
-			col.setQuantity(QTY);
-			
-			listOfOrders.add(col); //stores array list in supplier order object
-		}
-		rspurchase.close();
-		return listOfOrders;
-		} catch (SQLException e){
+											customerorderline col = new customerorderline(); // creates a instance of the supplier order class
+						
+											int PID = rspurchase.getInt("customerOrderID"); //getters
+											String PN = rspurchase.getString("productName");
+											int QTY = rspurchase.getInt("quantity");
+											
+											col.setCustomerOrderID(PID); //setters
+											col.setProductName(PN);
+											col.setQuantity(QTY);
+											
+											listOfOrders.add(col); //stores array list in supplier order object
+											}
+				rspurchase.close();
+				return listOfOrders;
+			} catch (SQLException e){
 				e.printStackTrace();
 			return null;
-		} 
+			} 
 		
 	}
 	
@@ -210,72 +210,68 @@ public class DBConnect { //class contains the database code
 		accessDB(); // opens connections
 		ResultSet rscustomer ;
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rscustomer = stmt.executeQuery(readcustomer);
-		while (rscustomer.next()) {
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rscustomer = stmt.executeQuery(readcustomer);
+				while (rscustomer.next()) {
 			
-			customerorder co = new customerorder(); // creates an instance
+										customerorder co = new customerorder(); // creates an instance
 			
-			int COID = rscustomer.getInt("customerOrderID"); //getter
-			String CN= rscustomer.getString("customerName");
-			String EW = rscustomer.getString("employeeWorking");
-			String CO = rscustomer.getString("checkedOut");
-						
-			co.setCustomerOrderID(COID); //setter
-			co.setCustomerName(CN);
-			co.setEmployeeWorking(EW);
-			co.setCheckedOut(CO);
-			
-			listOfOrders1.add(co);// adds arraylist 
-			
-			
-			//System.out.println("Product ID : " + PID + ", 		Order_ID : " + OID + ", 		Progress : " + pro);
-		}
-		rscustomer.close();
-		return listOfOrders1;
-		} catch (SQLException e){
+										int COID = rscustomer.getInt("customerOrderID"); //getter
+										String CN= rscustomer.getString("customerName");
+										String EW = rscustomer.getString("employeeWorking");
+										String CO = rscustomer.getString("checkedOut");
+													
+										co.setCustomerOrderID(COID); //setter
+										co.setCustomerName(CN);
+										co.setEmployeeWorking(EW);
+										co.setCheckedOut(CO);
+										
+										listOfOrders1.add(co);// adds arraylist 
+											}
+				rscustomer.close();
+				return listOfOrders1;
+			} catch (SQLException e){
 				e.printStackTrace();
 			return null;
-		} 
+			} 
 	}
 		
 	public ArrayList<customerorder> readPickedOrder() //Select all coloumn's from Customer Order Tables with the progress as picked and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders2 = new ArrayList<customerorder>();
-		String ReadCustomerPicked = "SELECT * FROM customerorder WHERE checkedOut = '%No%'"; //SQL statement
+		String ReadCustomerPicked = "SELECT * FROM customerorder WHERE checkedOut LIKE '%No%'"; //SQL statement
 		accessDB(); //opens connection
 		ResultSet rscustomerpicked ;
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rscustomerpicked = stmt.executeQuery(ReadCustomerPicked);
-		while (rscustomerpicked.next()) {
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rscustomerpicked = stmt.executeQuery(ReadCustomerPicked);
+				while (rscustomerpicked.next()) {
 			
-customerorder co = new customerorder(); // creates an instance
+													customerorder co = new customerorder(); // creates an instance
 			
-			int COID = rscustomerpicked.getInt("customerOrderID"); //getter
-			String CN= rscustomerpicked.getString("customerName");
-			String EW = rscustomerpicked.getString("employeeWorking");
-			String CO = rscustomerpicked.getString("checkedOut");
+													int COID = rscustomerpicked.getInt("customerOrderID"); //getter
+													String CN= rscustomerpicked.getString("customerName");
+													String EW = rscustomerpicked.getString("employeeWorking");
+													String CO = rscustomerpicked.getString("checkedOut");
 						
-			co.setCustomerOrderID(COID); //setter
-			co.setCustomerName(CN);
-			co.setEmployeeWorking(EW);
-			co.setCheckedOut(CO);
+													co.setCustomerOrderID(COID); //setter
+													co.setCustomerName(CN);
+													co.setEmployeeWorking(EW);
+													co.setCheckedOut(CO);
 			
-			listOfOrders2.add(co);// adds arraylist 
-			
-		}
-		rscustomerpicked.close();
-		return listOfOrders2;
-		} catch (SQLException e){
+													listOfOrders2.add(co);// adds arraylist 
+												}
+				rscustomerpicked.close();
+				return listOfOrders2;
+			} catch (SQLException e){
 				e.printStackTrace();
 			return null;
-		} 
-	}
+			} 
+		}
 	
 	public ArrayList<customerorderline> readPorous() //Select all coloumn's from Customer Order Tables and stores in a arraylist
 	{
@@ -314,33 +310,33 @@ customerorder co = new customerorder(); // creates an instance
 	public ArrayList<customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the checked out  as Yes and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders3 = new ArrayList<customerorder>(); // creation of arraylist
-		String ReadCustomerPacked = "SELECT * FROM customerorder WHERE checkedOut = '%Yes%'"; //select statement 
+		String ReadCustomerPacked = "SELECT * FROM customerorder WHERE checkedOut LIKE '%Yes%'"; //select statement 
 		accessDB(); //opens connection
 		ResultSet rscustomer ; 
 		try
-		{
-			System.out.println("Creating Statement...");
-			stmt= conn.createStatement();
-			rscustomer = stmt.executeQuery(ReadCustomerPacked);
-			while (rscustomer.next()) {
+			{
+				System.out.println("Creating Statement...");
+				stmt= conn.createStatement();
+				rscustomer = stmt.executeQuery(ReadCustomerPacked);
+				while (rscustomer.next()) {
 			
-				customerorder co = new customerorder(); // creates an instance
+											customerorder co = new customerorder(); // creates an instance
 				
-				int COID = rscustomer.getInt("customerOrderID"); //getter
-				String CN= rscustomer.getString("customerName");
-				String EW = rscustomer.getString("employeeWorking");
-				String CO = rscustomer.getString("checkedOut");
+											int COID = rscustomer.getInt("customerOrderID"); //getter
+											String CN= rscustomer.getString("customerName");
+											String EW = rscustomer.getString("employeeWorking");
+											String CO = rscustomer.getString("checkedOut");
 							
-				co.setCustomerOrderID(COID); //setter
-				co.setCustomerName(CN);
-				co.setEmployeeWorking(EW);
-				co.setCheckedOut(CO);
+											co.setCustomerOrderID(COID); //setter
+											co.setCustomerName(CN);
+											co.setEmployeeWorking(EW);
+											co.setCheckedOut(CO);
 				
-				listOfOrders3.add(co);// adds arraylist 
+											listOfOrders3.add(co);// adds arraylist 
 										}
-		rscustomer.close();
-		return listOfOrders3;
-		} catch (SQLException e){
+				rscustomer.close();
+				return listOfOrders3;
+			} catch (SQLException e){
 				e.printStackTrace();
 				return null;
 			} 
@@ -417,89 +413,4 @@ customerorder co = new customerorder(); // creates an instance
 			
 		} 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*public ArrayList<customerorderline> readOrders()
-	{
-		ArrayList<customerorderline> listOfOrders5 = new ArrayList<customerorderline>();
-		String ReadOrders = "Select * from customerorderline";
-		accessDB();
-		ResultSet rsorders;
-		try
-		{
-				System.out.println("Creating Statement....");
-				stmt=conn.createStatement();
-				rsorders = stmt.executeQuery(ReadOrders);
-					while(rsorders.next()) {
-												customerorderline CustomerOrderLine = new customerorderline();
-												
-												int OID = rsorders.getInt("orderID");
-												int PID = rsorders.getInt("productID");
-												int QUANTITY = rsorders.getInt("quantity");	
-												
-												CustomerOrderLine.setOrderID(OID);
-												CustomerOrderLine.setProductID(PID);
-												CustomerOrderLine.setQuantity(QUANTITY);
-												
-												listOfOrders5.add(CustomerOrderLine);
-											}
-						rsorders.close();
-						return listOfOrders5;
-		} catch (SQLException e){
-				e.printStackTrace();
-				return null;
-		}
-	}*/
-			
-	/*public void UpdateDatabase()
-	{
-		try
-		{
-			System.out.println("Creating statement...");
-			stmt = conn.createStatement();
-			String sq13 = "UPDATE cus_order" + " SET Order_ID = 2 WHERE Product_ID = 1";
-			System.out.println(sq13);
-			stmt.executeUpdate(sq13);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void DeleteDatabase()
-	{
-		try
-		{
-			System.out.println("Creating Statement...");
-			stmt = conn.createStatement();
-			String sq14 = "DELETE FROM cus_order" + " WHERE Product_ID = 1";
-			stmt.executeUpdate(sq14);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
 }
-
-/*public void CreateProduct() //Enter product 
-{
-
-	try
-	{	
-	System.out.println("Inserting records into the table...");
-	stmt= conn.createStatement();
-	String sql = "INSERT INTO product" + " VALUES (, , '', '', )";
-	System.out.println(sql);
-	stmt.executeUpdate(sql);
-	System.out.println("Inserted Records into the table..");
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-}
-*/
-
