@@ -9,13 +9,12 @@ import javax.swing.JPanel;
 public class viewProductsGUI {
 
 	private JPanel productPanel = new JPanel();
-	
+	private JPanel productListPanel = new JPanel();
+	Container listProduct = new Container();
 	
 	Container viewProduct = new Container();
 	JFrame productframe = new JFrame("View Products");
-	
-	
-	
+		
 	public viewProductsGUI() {
 		mainmenu();
 		productframe.setSize(1000,300);
@@ -52,7 +51,15 @@ public class viewProductsGUI {
 		viewProduct.setVisible(true);
 		productPanel.setVisible(true);
 	}
+	
+	public void productList() {
+		productframe.add(listProduct); //container is added to the frame
+		listProduct.add(productListPanel); //panel is added to the container
 		
+		listProduct.setLayout(new FlowLayout());
+		
+		
+	}
 		
 	}
 

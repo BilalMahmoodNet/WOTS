@@ -244,7 +244,7 @@ public class DBConnect { //class contains the database code
 	public ArrayList<customerorder> readPickedOrder() //Select all coloumn's from Customer Order Tables with the progress as picked and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders2 = new ArrayList<customerorder>();
-		String ReadCustomerPicked = "SELECT * FROM customerorder WHERE progress = 'picked'"; //SQL statement
+		String ReadCustomerPicked = "SELECT * FROM customerorder WHERE checkedOut = '%No%'"; //SQL statement
 		accessDB(); //opens connection
 		ResultSet rscustomerpicked ;
 		try
@@ -311,10 +311,10 @@ customerorder co = new customerorder(); // creates an instance
 		} 
 	}
 		
-	public ArrayList<customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the progress as packed and stores in a arraylist
+	public ArrayList<customerorder> readPackedOrder() //Select all coloumns's from Customer Order Tables with the checked out  as Yes and stores in a arraylist
 	{
 		ArrayList<customerorder> listOfOrders3 = new ArrayList<customerorder>(); // creation of arraylist
-		String ReadCustomerPacked = "SELECT * FROM customerorder WHERE progress = 'packed'"; //select statement 
+		String ReadCustomerPacked = "SELECT * FROM customerorder WHERE checkedOut = '%Yes%'"; //select statement 
 		accessDB(); //opens connection
 		ResultSet rscustomer ; 
 		try

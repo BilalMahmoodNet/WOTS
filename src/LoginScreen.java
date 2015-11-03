@@ -168,8 +168,8 @@ public class LoginScreen
 		{
 			System.out.println("Press 1 to view Supplier orders");
 			System.out.println("Press 2 to view Customer orders");
-			System.out.println("Press 3 to view Picked orders");
-			System.out.println("Press 4 to view Packed orders");
+			System.out.println("Press 3 to view checked orders");
+			System.out.println("Press 4 to view unchecked orders");
 			System.out.println("Press 5 to view PorousWear Orders");
 			System.out.println("Press 6 to return");
 			
@@ -211,7 +211,7 @@ public class LoginScreen
 													menu();
 												}
 											break;
-								case "3": System.out.println("View Picked Orders");							
+								case "3": System.out.println("View Orders that have been checked out");							
 											ArrayList<customerorder> listOfOrders2 = DB.readPickedOrder();
 											for (int i= 0; i<listOfOrders2.size(); i++){
 												System.out.println(
@@ -223,7 +223,7 @@ public class LoginScreen
 												}
 											readOrder();
 										break;	
-								case "4": System.out.println("View Packed Orders");
+								case "4": System.out.println("View Orders that havent been checked out");
 											ArrayList<customerorder> listOfOrders3 = DB.readPickedOrder();
 											for (int i= 0; i<listOfOrders3.size(); i++){
 												System.out.println(

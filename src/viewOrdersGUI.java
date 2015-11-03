@@ -12,7 +12,7 @@ public class viewOrdersGUI
 	private JPanel viewOrderPanel = new JPanel();
 	Container viewOrderView = new Container();
 	Container viewOrder = new Container();
-	JFrame orderframe = new JFrame("View Products");
+	JFrame orderframe = new JFrame("View Orders");
 	
 	public viewOrdersGUI()
 	{
@@ -38,7 +38,7 @@ public class viewOrdersGUI
 		newPurchaseOrder.setActionCommand("newPurchase");
 		viewProducts.setActionCommand("viewProduct");
 		exit.setActionCommand("exit");
-		
+			
 		newCustomerOrder.addActionListener(new BCL (orderframe));
 		newPurchaseOrder.addActionListener(new BCL (orderframe));
 		viewProducts.addActionListener(new BCL (orderframe));
@@ -61,21 +61,21 @@ public class viewOrdersGUI
 		
 		JButton viewSupplierOrders = new JButton("View Supplier");
 		JButton viewCustomerOrders = new JButton("View Customer");
-		JButton viewPickedOrders = new JButton("View Picked");
-		JButton viewPackedOrders = new JButton("View Packed");
+		JButton viewPickedOrders = new JButton("View Checked Out");
+		JButton viewPackedOrders = new JButton("View Unchecked Out");
 		JButton viewPorousWearOrders = new JButton("View Porouswear");
 
 		viewSupplierOrders.setActionCommand("viewSupplier");
-		viewCustomerOrders.setActionCommand("viewSupplier");
-		viewPickedOrders.setActionCommand("viewSupplier");
-		viewPackedOrders.setActionCommand("viewSupplier");
-		viewPorousWearOrders.setActionCommand("viewSupplier");
+		viewCustomerOrders.setActionCommand("viewCustomer");
+		viewPickedOrders.setActionCommand("viewPicked");
+		viewPackedOrders.setActionCommand("viewPacked");
+		viewPorousWearOrders.setActionCommand("viewPorouswear");
 
-		viewSupplierOrders.addActionListener(new BCL (orderframe));
-		viewCustomerOrders.addActionListener(new BCL (orderframe));
-		viewPickedOrders.addActionListener(new BCL (orderframe));
-		viewPackedOrders.addActionListener(new BCL (orderframe));
-		viewPorousWearOrders.addActionListener(new BCL (orderframe));
+		viewSupplierOrders.addActionListener(new orderTypeBCL ());
+		viewCustomerOrders.addActionListener(new orderTypeBCL ());
+		viewPickedOrders.addActionListener(new orderTypeBCL ());
+		viewPackedOrders.addActionListener(new orderTypeBCL ());
+		viewPorousWearOrders.addActionListener(new orderTypeBCL ());
 
 		viewOrderPanel.add(viewSupplierOrders);
 		viewOrderPanel.add(viewCustomerOrders);
