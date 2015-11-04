@@ -4,7 +4,7 @@ public class Customerorder {
 	private  String employeeWorking;
 	private String checkedOut;
 	
-	
+																// Getter and Setters
 	public int getCustomerOrderID() {
 		return customerOrderID;
 	}

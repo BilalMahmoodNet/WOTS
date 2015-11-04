@@ -5,10 +5,10 @@ public class LoginScreen
 	{
  
 		DBConnect DB = new DBConnect();
-		Scanner input = new Scanner(System.in);
+		Scanner input = new Scanner(System.in); // required for users input
 		Statement stmt = null;
 			
-		public void menu() 
+		public void menu() //contains initial case statement for navigation
 		{ 
 			String choice;			
 							System.out.println("*****************************");
@@ -48,19 +48,19 @@ public class LoginScreen
 		{
 		
 			System.out.println("Enter Customer OrderID:");
-			int customerOrderID = input.nextInt(); // stores integer into the customerOrderID variable
+			int customerOrderID = input.nextInt(); 			// stores integer into the customerOrderID variable
 			
 			System.out.println("Enter Customer Name:");
-			String customerName = input.next();
+			String customerName = input.next();				// stores the customer's name as an String
 			
 			System.out.println("Enter Employee Name:");
-			String employeeWorking = input.next();
+			String employeeWorking = input.next();			// stores the employees's name as an String
 			
 			System.out.println("Enter Checked Out:");
-			String checkedOut = input.next();
+			String checkedOut = input.next();				// stores the whether the order has been checked out as a String
 			
 			String sql = "INSERT INTO customerorder (customerOrderID, customerName, employeeWorking, checkedOut) VALUES ("+customerOrderID+", '"+customerName+"', '"+employeeWorking+"', '"+checkedOut+"')"; //string concatination
-			DB.CreateOrder(sql);
+			DB.CreateOrder(sql); 
 			newCustomerOrderLine();
 			
 		}
@@ -212,7 +212,7 @@ public class LoginScreen
 												}
 											break;
 								case "3": System.out.println("View Orders that have been checked out");							
-											ArrayList<Customerorder> listOfOrders2 = DB.readPickedOrder();
+											ArrayList<Customerorder> listOfOrders2 = DB.readPackedOrder();
 											for (int i= 0; i<listOfOrders2.size(); i++){
 												System.out.println(
 														"Customer ID : " + listOfOrders2.get(i).getCustomerOrderID() +

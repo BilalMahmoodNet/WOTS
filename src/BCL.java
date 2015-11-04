@@ -24,25 +24,25 @@ public class BCL implements ActionListener {
 			
 			String command = ae.getActionCommand();
 				switch (command) {
-					case "newCustomerOrder":
-						System.out.println("Opening window");
-						frameToDestroy.dispose();
-						NCG = new newCustomerGUI();
+					case "newCustomerOrder": // when user clicks the new Customer Order Button
+						System.out.println("Opening window"); // system console prints 
+						frameToDestroy.dispose(); // destroys the frame 
+						NCG = new newCustomerGUI(); // creates new frame
 					break;
-					case "newPurchase": 
+					case "newPurchase":	//when user clicks new purchase button
 						frameToDestroy.dispose();
 						NPG = new newPurchaseOrderGUI();
 					break;
-					case "viewOrder": 
+					case "viewOrder": // when user clicks view order button
 						frameToDestroy.dispose();
 						VO = new viewOrdersGUI();
 					break;
-					case "viewProduct": 
+					case "viewProduct":  // when user clicks view product button
 						frameToDestroy.dispose();
 						VP = new viewProductsGUI();
 					break;
-					case "exit": 
-						frameToDestroy.dispose();
+					case "exit": 		// when user click on the exit button
+						frameToDestroy.dispose(); //deletes frame
 					break;
 				}	
 		}

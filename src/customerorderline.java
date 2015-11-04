@@ -3,7 +3,7 @@ public class customerorderline {
 	private int customerOrderID;
 	private String productName;
 	private int quantity;
-	
+																		//Getter and Setters
 	public int getCustomerOrderID() {
 		return customerOrderID;
 	}

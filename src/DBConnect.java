@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DBConnect { //class contains the database code
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";   // the driver
-	static final String DB_URL = "jdbc:mysql://10.50.15.36:3306/wots"; // My database URL
+	static final String DB_URL = "jdbc:mysql://10.50.15.29:3306/wots"; // My database URL
 	
 	static final String USER = "root";
 	static final String PASS = "netbuilder";//database password
